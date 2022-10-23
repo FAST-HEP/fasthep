@@ -32,6 +32,6 @@ def test_import_plotter():
 
 
 def test_import_validate():
-    import scikit_validate as fv
+    import skvalidate
 
-    assert fv.__version__
+    assert skvalidate.__version__
