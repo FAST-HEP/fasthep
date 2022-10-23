@@ -30,7 +30,7 @@ classifiers = [
 dynamic = ["version"]
 dependencies = [
   "fasthep-cli",
-  "fasthep-logger",
+  "fasthep-logging",
   "typing_extensions >=3.7; python_version<'3.8'",
 ]
 
