@@ -60,6 +60,8 @@ test = [
 dev = [
   "pytest >=6",
   "pytest-cov >=3",
+  "pre-commit",
+  "mypy >=0.971",
 ]
 docs = [
   "Sphinx>=4.0",
