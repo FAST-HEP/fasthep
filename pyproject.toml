@@ -1,0 +1,142 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fasthep"
+authors = [
+  { name = "Luke Kreczko", email = "kreczko@cern.ch" },
+]
+description = "Meta package for installing the FAST-HEP workflow ecosystem"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "BSD-3-Clause" }
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: BSD License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering",
+  "Typing :: Typed",
+]
+dynamic = ["version"]
+dependencies = []
+
+[project.optional-dependencies]
+basic = [
+  "fasthep-flow",
+  "fasthep-cli",
+]
+
+hep = [
+  "fasthep-flow",
+  "fasthep-cli",
+  "fasthep-curator",
+  "fasthep-carpenter @ git+https://github.com/FAST-HEP/fasthep-carpenter.git",
+  "fasthep-render @ git+https://github.com/FAST-HEP/fasthep-render.git",
+]
+
+full = [
+  "fasthep-flow",
+  "fasthep-cli",
+  "fasthep-curator",
+  "fasthep-carpenter @ git+https://github.com/FAST-HEP/fasthep-carpenter.git",
+  "fasthep-render @ git+https://github.com/FAST-HEP/fasthep-render.git",
+  "fasthep-toolbench @ git+https://github.com/FAST-HEP/fasthep-toolbench.git",
+]
+
+workshop = [
+  "fasthep-workshop @ git+https://github.com/FAST-HEP/fasthep-workshop.git",
+]
+
+dev = [
+  "pytest",
+  "twine",
+]
+
+[project.urls]
+Homepage = "https://github.com/FAST-HEP/fasthep"
+"Bug Tracker" = "https://github.com/FAST-HEP/fasthep/issues"
+Discussions = "https://github.com/FAST-HEP/fasthep/discussions"
+Documentation = "https://fast-hep.github.io"
+Changelog = "https://github.com/FAST-HEP/fasthep/releases"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/fasthep/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fasthep"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/fasthep",
+  "tests",
+  "README.md",
+  "LICENSE",
+  "pyproject.toml",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = [
+  "-ra",
+  "--showlocals",
+  "--strict-markers",
+  "--strict-config",
+]
+xfail_strict = true
+filterwarnings = ["error"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+src = ["src", "tests"]
+extend-exclude = [
+  "src/fasthep/_version.py",
+]
+
+[tool.ruff.lint]
+select = [
+  "E", "F", "W",
+  "B",
+  "I",
+  "ARG",
+  "C4",
+  "ICN",
+  "ISC",
+  "PGH",
+  "PIE",
+  "PL",
+  "PT",
+  "PTH",
+  "RET",
+  "RUF",
+  "SIM",
+  "T20",
+  "UP",
+  "YTT",
+]
+ignore = [
+  "E501",   # Line too long; handled pragmatically by formatter/review
+  "PLR",    # Design-related pylint refactor recommendations
+  "EM101",  # Raw string literals in exceptions are acceptable here
+  "EM102",  # Allow inline f-strings in exceptions
+  "EM103",  # Allow exception messages directly in raise statements
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["T20", "ARG"]
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
