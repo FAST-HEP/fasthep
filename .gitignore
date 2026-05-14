@@ -225,4 +225,4 @@ snapshots/
 .hepflow/**
 
 # hatch-vcs generated version file
-src/hepflow/_version.py
+src/fasthep/_version.py

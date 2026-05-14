@@ -1,115 +1,155 @@
-# fasthep-flow
+# fasthep
 
-`fasthep-flow` provides the core FAST-HEP workflow language and execution engine.
+[![CI](https://github.com/FAST-HEP/fasthep/actions/workflows/ci.yml/badge.svg)](https://github.com/FAST-HEP/fasthep/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/fasthep)](https://pypi.org/project/fasthep/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/fasthep)](https://pypi.org/project/fasthep/)
+[![Documentation Status](https://readthedocs.org/projects/fasthep/badge/?version=latest)](https://fasthep.readthedocs.io/en/latest/)
+[![Discussions](https://img.shields.io/static/v1?label=Discussions\&message=Ask\&color=blue\&logo=github)](https://github.com/FAST-HEP/fasthep/discussions)
 
-It is responsible for:
+<p align="center">
+  <a href="https://github.com/FAST-HEP/fasthep">
+    <picture>
+      <source
+        media="(prefers-color-scheme: dark)"
+        srcset="https://raw.githubusercontent.com/FAST-HEP/logos-etc/master/fast-hep-white.png"
+      >
+      <source
+        media="(prefers-color-scheme: light)"
+        srcset="https://raw.githubusercontent.com/FAST-HEP/logos-etc/master/fast-hep-black.png"
+      >
+      <img
+        alt="FAST-HEP"
+        src="https://raw.githubusercontent.com/FAST-HEP/logos-etc/master/fast-hep-black.png"
+        width="500"
+      >
+    </picture>
+  </a>
+</p>
 
-* workflow compilation
-* execution planning
-* runtime orchestration
-* registry/profile loading
-* backend interfaces
-* artifact lifecycle management
+`fasthep` is the meta package for the FAST-HEP ecosystem.
 
-The Python import namespace is:
+It provides curated installation profiles for compatible FAST-HEP packages and acts as the primary user-facing installation entry point.
 
-```python
-import hepflow
-```
+## What is FAST-HEP?
 
-## Scope
+FAST-HEP is a modular ecosystem for declarative High Energy Physics workflows.
 
-`fasthep-flow` is intentionally lightweight and domain-agnostic.
+The ecosystem is split into focused packages:
 
-It does **not** implement:
+* `fasthep-flow`
 
-* ROOT IO
-* histogram filling
-* HEP-specific transforms
-* plotting/rendering
-* experiment-specific analysis logic
-
-Those capabilities are provided by companion FAST-HEP packages.
-
-## Recommended companion packages
-
-For High Energy Physics (HEP) workflows, most users will also want:
+  * workflow compilation and orchestration
 
 * `fasthep-carpenter`
 
-  * HEP analysis transforms
-  * ROOT/awkward sources and writers
-  * histogramming
-  * cutflows
-  * object reconstruction helpers
+  * analysis transforms and histogramming
 
 * `fasthep-curator`
 
-  * dataset inspection
-  * schema snapshots
-  * diagnostics
-  * runtime hooks
+  * dataset inspection and validation
 
 * `fasthep-render`
 
-  * plotting
-  * tables
-  * reports
-  * render styles
+  * plotting and report generation
 
 * `fasthep-cli`
 
-  * the `fasthep` command-line interface
+  * unified command-line interface
 
-Alternatively, install the meta package:
+* `fasthep-toolbench`
+
+  * shared utilities and UX helpers
+
+* `fasthep-workshop`
+
+  * examples and tutorials
+
+The goal is to keep:
+
+* workflow orchestration
+* analysis logic
+* rendering
+* metadata handling
+* user tooling
+
+cleanly separated and independently evolvable.
+
+## Installation profiles
+
+`fasthep` provides optional dependency groups for different usage profiles.
+
+### Basic workflow tools
+
+Installs:
+
+* `fasthep-flow`
+* `fasthep-cli`
 
 ```bash
-pip install fasthep
+pip install "fasthep[basic]"
 ```
 
-## Installation
+### HEP analysis stack
 
-Core workflow package only:
+Installs:
+
+* `fasthep-flow`
+* `fasthep-cli`
+* `fasthep-curator`
+* `fasthep-carpenter`
+* `fasthep-render`
 
 ```bash
-pip install fasthep-flow
+pip install "fasthep[hep]"
 ```
 
-Development environment:
+### Full ecosystem
+
+Installs:
+
+* all HEP analysis packages
+* shared utilities
+
+```bash
+pip install "fasthep[full]"
+```
+
+### Workshop/tutorial environment
+
+Installs workshop examples and tutorial material.
+
+```bash
+pip install "fasthep[workshop]"
+```
+
+## Verified compatibility bundles
+
+The purpose of the `fasthep` meta package is to provide:
+
+* known-good package combinations
+* coordinated ecosystem releases
+* compatibility-tested dependency sets
+
+Individual FAST-HEP packages evolve independently.
+
+The `fasthep` meta package is intended to represent a verified integration layer across the ecosystem.
+
+## Development status
+
+FAST-HEP is currently in active pre-alpha development.
+
+Some optional dependencies currently use Git-based installation while packages are being split and published independently.
+
+These direct references are temporary and will be replaced with standard PyPI version pins once the ecosystem stabilizes.
+
+## Development environment
+
+Using Pixi:
 
 ```bash
 pixi install
 pixi run ci
 ```
-
-## Minimal example
-
-```python
-from hepflow.api import compile_author_file, run_author_file
-
-compile_author_file(
-    "analysis/author.yaml",
-    work_dir="build/example",
-)
-
-run_author_file(
-    "analysis/author.yaml",
-    outdir="build/example",
-)
-```
-
-## Design principles
-
-`fasthep-flow` focuses on:
-
-* small and composable interfaces
-* explicit workflow compilation stages
-* registry-driven extensibility
-* backend-independent execution planning
-* reproducible workflow artifacts
-* minimal domain assumptions
-
-The long-term goal is to make the workflow layer reusable beyond High Energy Physics.
 
 ## Documentation
 
@@ -117,13 +157,13 @@ Main FAST-HEP documentation:
 
 * [https://fast-hep.github.io](https://fast-hep.github.io)
 
-API documentation for this package:
+Package/API documentation:
 
-* [https://fasthep-flow.readthedocs.io/en/latest/](https://fasthep-flow.readthedocs.io/en/latest/)
+* [https://fasthep.readthedocs.io/en/latest/](https://fasthep.readthedocs.io/en/latest/)
 
 ## Repository
 
-Main FAST-HEP repository and project links:
+Main project repository:
 
 * [https://github.com/FAST-HEP/fasthep](https://github.com/FAST-HEP/fasthep)
 
@@ -131,14 +171,24 @@ Main FAST-HEP repository and project links:
 
 Contribution guidelines, development setup, and project-wide documentation are maintained centrally in the main FAST-HEP repository.
 
-## Legacy branch
+## Release model
 
-The pre-split prototype implementation is preserved in the `legacy` branch.
+FAST-HEP packages are released independently.
 
-The new `main` branch contains the split-package architecture.
+The `fasthep` meta package is used to:
+
+* aggregate compatible package sets
+* verify ecosystem integration
+* provide stable installation profiles
+
+This separation allows:
+
+* faster iteration on individual packages
+* coordinated compatibility releases
+* gradual ecosystem stabilization
 
 ## Status
 
 FAST-HEP is currently in active pre-alpha development.
 
-Interfaces may still evolve rapidly while the package split and stabilization work continues.
+Interfaces, dependency layouts, and installation profiles may evolve rapidly while the ecosystem stabilizes.

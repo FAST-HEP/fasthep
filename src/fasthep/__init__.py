@@ -1,4 +1,5 @@
 """FAST-HEP meta package."""
+from __future__ import annotations
 
 __description__ = "Meta package for installing FAST-HEP workflow packages."
 

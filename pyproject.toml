@@ -56,9 +56,8 @@ workshop = [
   "fasthep-workshop @ git+https://github.com/FAST-HEP/fasthep-workshop.git",
 ]
 
-dev = [
+test = [
   "pytest",
-  "twine",
 ]
 
 [project.urls]
@@ -67,6 +66,9 @@ Homepage = "https://github.com/FAST-HEP/fasthep"
 Discussions = "https://github.com/FAST-HEP/fasthep/discussions"
 Documentation = "https://fast-hep.github.io"
 Changelog = "https://github.com/FAST-HEP/fasthep/releases"
+
+[tool.hatch.metadata]
+allow-direct-references = true
 
 [tool.hatch.version]
 source = "vcs"
