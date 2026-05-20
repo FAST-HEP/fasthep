@@ -1,0 +1,83 @@
+name: Ecosystem Validation
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/validation.yml"
+      - "pyproject.toml"
+      - "src/**"
+      - "tests/**"
+  push:
+    branches:
+      - main
+    tags:
+      - "20*.*.*"
+  release:
+    types:
+      - published
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FORCE_COLOR: "3"
+
+jobs:
+  fasthep-flow:
+    name: Validate fasthep-flow integration
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install FAST-HEP basic validation set
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[basic,test]"
+
+      - name: Run package tests
+        run: python -m pytest
+
+      - name: Write validation report
+        run: |
+          mkdir -p validation-reports
+          python - <<'PY'
+          from __future__ import annotations
+
+          import importlib.metadata as metadata
+          import json
+          from pathlib import Path
+
+          import fasthep
+          import hepflow
+
+          report = {
+              "package": "fasthep",
+              "fasthep_version": fasthep.__version__,
+              "fasthep_flow_distribution": metadata.version("fasthep-flow"),
+              "hepflow_module": hepflow.__name__,
+          }
+
+          Path("validation-reports/fasthep-flow.json").write_text(
+              json.dumps(report, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload validation report
+        uses: actions/upload-artifact@v7
+        with:
+          name: fasthep-flow-validation
+          path: validation-reports/fasthep-flow.json
+          if-no-files-found: error
