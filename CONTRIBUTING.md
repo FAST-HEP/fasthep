@@ -59,7 +59,7 @@ The ecosystem integration workspace is:
 
 Typical workflow:
 
-1. Open an issue or discussion
+1. Open an issue or discussion and wait for feedback
 2. Create a branch
 3. Implement changes
 4. Run local checks

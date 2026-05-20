@@ -1,5 +1,7 @@
 # fasthep
 
+**NOTE**: New alpha release of the rewrite is coming soon, please wait with any contributions. 
+
 [![CI](https://github.com/FAST-HEP/fasthep/actions/workflows/ci.yml/badge.svg)](https://github.com/FAST-HEP/fasthep/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/fasthep)](https://pypi.org/project/fasthep/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/fasthep)](https://pypi.org/project/fasthep/)
