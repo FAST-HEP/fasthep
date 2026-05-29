@@ -31,25 +31,25 @@ dependencies = []
 
 [project.optional-dependencies]
 basic = [
-  "fasthep-flow",
-  "fasthep-cli",
+  "fasthep-flow == 2026.5.0",
+  "fasthep-cli == 2026.5.0",
 ]
 
 hep = [
-  "fasthep-flow",
-  "fasthep-cli",
-  "fasthep-curator",
-  "fasthep-carpenter @ git+https://github.com/FAST-HEP/fasthep-carpenter.git",
-  "fasthep-render @ git+https://github.com/FAST-HEP/fasthep-render.git",
+  "fasthep-flow == 2026.5.0",
+  "fasthep-cli == 2026.5.0",
+  "fasthep-curator == 2026.5.0",
+  "fasthep-carpenter == 2026.5.0",
+  "fasthep-render == 2026.5.0",
 ]
 
 full = [
-  "fasthep-flow",
-  "fasthep-cli",
-  "fasthep-curator",
-  "fasthep-carpenter @ git+https://github.com/FAST-HEP/fasthep-carpenter.git",
-  "fasthep-render @ git+https://github.com/FAST-HEP/fasthep-render.git",
-  "fasthep-toolbench @ git+https://github.com/FAST-HEP/fasthep-toolbench.git",
+  "fasthep-flow == 2026.5.0",
+  "fasthep-cli == 2026.5.0",
+  "fasthep-curator == 2026.5.0",
+  "fasthep-carpenter == 2026.5.0",
+  "fasthep-render == 2026.5.0",
+  "fasthep-toolbench == 2026.5.0",
 ]
 
 workshop = [
