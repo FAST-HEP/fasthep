@@ -53,7 +53,7 @@ full = [
 ]
 
 workshop = [
-  "fasthep-workshop @ git+https://github.com/FAST-HEP/fasthep-workshop.git",
+  "fasthep-workshop == 2026.06.1",
 ]
 
 test = [
