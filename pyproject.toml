@@ -31,25 +31,25 @@ dependencies = []
 
 [project.optional-dependencies]
 basic = [
-  "fasthep-flow == 2026.5.0",
-  "fasthep-cli == 2026.5.0",
+  "fasthep-flow == 2026.06.1",
+  "fasthep-cli == 2026.06.1",
 ]
 
 hep = [
-  "fasthep-flow == 2026.5.0",
-  "fasthep-cli == 2026.5.0",
-  "fasthep-curator == 2026.5.0",
-  "fasthep-carpenter == 2026.5.0",
-  "fasthep-render == 2026.5.0",
+  "fasthep-flow == 2026.06.1",
+  "fasthep-cli == 2026.06.1",
+  "fasthep-curator == 2026.06.1",
+  "fasthep-carpenter == 2026.06.1",
+  "fasthep-render == 2026.06.1",
 ]
 
 full = [
-  "fasthep-flow == 2026.5.0",
-  "fasthep-cli == 2026.5.0",
-  "fasthep-curator == 2026.5.0",
-  "fasthep-carpenter == 2026.5.0",
-  "fasthep-render == 2026.5.0",
-  "fasthep-toolbench == 2026.5.0",
+  "fasthep-flow == 2026.06.1",
+  "fasthep-cli == 2026.06.1",
+  "fasthep-curator == 2026.06.1",
+  "fasthep-carpenter == 2026.06.1",
+  "fasthep-render == 2026.06.1",
+  "fasthep-toolbench == 2026.06.1",
 ]
 
 workshop = [
@@ -72,7 +72,8 @@ allow-direct-references = true
 
 [tool.hatch.version]
 source = "vcs"
-
+[tool.hatch.version.raw-options]
+fallback_version = "2026.06.1"
 [tool.hatch.build.hooks.vcs]
 version-file = "src/fasthep/_version.py"
 
