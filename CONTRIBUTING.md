@@ -1,252 +1,206 @@
 # Contributing to FAST-HEP
 
-Thank you for your interest in contributing to FAST-HEP.
+Thank you for your interest in contributing to FAST-HEP!
 
-FAST-HEP is a modular ecosystem for declarative High Energy Physics workflows, analysis tooling, rendering, and metadata management.
+FAST-HEP is a toolkit for building declarative High Energy Physics (HEP) analyses. It is developed as a collection of focused packages, with some components designed to be useful beyond HEP.
 
-We welcome contributions of all sizes, including:
+Contributions of all sizes are welcome, including:
 
-* bug reports
-* feature requests
-* typo fixes
-* documentation improvements
-* tests
-* workflow examples
-* infrastructure improvements
-* small refactors
-* larger architectural work
-* AI-assisted contributions
+* bug reports and feature requests
+* documentation fixes and improvements
+* tutorials and workflow examples
+* tests and bug fixes
+* new features and infrastructure
+* larger architectural improvements
 
-Workflow examples should:
-- use public/open data where possible
-- or use CERN EOS/CERNBox-accessible data intended for redistribution
-- avoid committing large binaries directly into repositories
-- include provenance and source information
-- be reproducible where practical
+You do not need to be familiar with the entire FAST-HEP toolkit to contribute to an individual package.
 
-Additional guidance and workshop-specific conventions are documented in `fasthep-workshop`.
+## Getting started
 
-## Development model
+If you have found a bug, have an idea for a feature, or are unsure where a change belongs, start by opening an [issue](https://github.com/FAST-HEP/fasthep/issues) or asking in [GitHub Discussions](https://github.com/FAST-HEP/fasthep/discussions).
 
-FAST-HEP is developed as a collection of focused packages:
+For small and self-contained changes, such as typo fixes or straightforward documentation improvements, you can open a pull request directly.
 
-- `fasthep-flow`
-  - workflow compilation, planning, and orchestration
+For substantial features, refactors, or architectural changes, please discuss the proposal before investing significant implementation effort.
 
-- `fasthep-carpenter`
-  - HEP analysis transforms and histogramming
+A typical contribution looks like:
 
-- `fasthep-curator`
-  - dataset inspection, validation, and metadata generation
+1. Find or open an issue describing the change.
+2. Identify the FAST-HEP package responsible for it.
+3. Create a branch in the relevant repository.
+4. Implement and test the change.
+5. Run the repository's local checks.
+6. Open a pull request and describe what changed and why.
+7. Review and iterate.
 
-- `fasthep-render`
-  - plotting, reports, and rendering utilities
+Where practical, prefer small, focused pull requests over large changes containing unrelated work.
 
-- `fasthep-cli`
-  - unified command-line interface
+## Choosing a package
 
-- `fasthep-toolbench`
-  - shared utilities and user-facing helpers
+FAST-HEP separates different responsibilities across focused packages:
 
-- `fasthep-workshop`
-  - examples, tutorials, and training material
+| Package             | Responsibility                                                       |
+| ------------------- | -------------------------------------------------------------------- |
+| `fasthep-flow`      | Workflow description, compilation, planning, and execution           |
+| `fasthep-carpenter` | HEP analysis transforms, histogramming, and columnar data processing |
+| `fasthep-curator`   | Dataset inspection, metadata, provenance, and diagnostics            |
+| `fasthep-render`    | Plotting, reports, and visualisation                                 |
+| `fasthep-cli`       | Unified command-line interface                                       |
+| `fasthep-toolbench` | Shared, domain-independent utilities                                 |
+| `fasthep-workshop`  | Tutorials, examples, and training material                           |
 
-The ecosystem integration workspace is:
+If your change affects several packages, use the `fasthep-dev` integration workspace.
 
-* `fasthep-dev`
-
-## Development workflow
-
-Typical workflow:
-
-1. Open an issue or discussion and wait for feedback
-2. Create a branch
-3. Implement changes
-4. Run local checks
-5. Open a pull request
-6. Review and iterate
-
-For substantial refactors or architectural changes, please discuss the proposal before investing significant implementation effort.
-
-Where practical, prefer smaller incremental pull requests over large monolithic changes.
+If you are unsure where a contribution belongs, open an issue or discussion in the `fasthep` repository.
 
 ## Development environment
 
-The recommended development environment is based on:
+FAST-HEP uses [Pixi](https://pixi.sh/) to provide reproducible development environments. Python 3.11 or newer is supported.
 
-* `pixi`
-* Python ≥ 3.11
-
-Most repositories support:
+After cloning the package you want to work on, most repositories can be set up with:
 
 ```bash
 pixi install
+```
+
+The complete local CI suite can usually be run with:
+
+```bash
 pixi run ci
 ```
 
-The `fasthep-dev` workspace provides:
-
-* cross-package integration
-* shared tooling
-* ecosystem-level testing
-* coordinated release validation
-
-Contributors working across multiple FAST-HEP packages are encouraged to use `fasthep-dev`.
-
-## Coding standards
-
-FAST-HEP aims to prioritize:
-
-* readability
-* maintainability
-* modularity
-* explicit interfaces
-* strong typing
-* testability
-
-General guidelines:
-
-* use descriptive names
-* keep functions focused
-* prefer composition over deeply coupled logic
-* avoid unnecessary abstractions
-* prefer explicit behavior over implicit magic
-* add tests for new functionality
-* keep workflow orchestration separate from domain-specific logic
-
-We use:
-
-* `ruff`
-* `mypy`
-* `pytest`
-* `pre-commit`
-* GitHub Actions CI
-
-Most repositories support:
+Individual checks are also commonly available:
 
 ```bash
 pixi run lint
 pixi run typecheck
 pixi run test
-pixi run ci
 ```
 
-## Documentation
+FAST-HEP commonly uses:
 
-Documentation improvements are highly valued.
+* `ruff` for linting and formatting checks
+* `mypy` for static type checking
+* `pytest` for testing
+* `pre-commit` for repository checks
+* GitHub Actions for continuous integration
 
-Useful contributions include:
+Check the individual repository for any package-specific development instructions.
 
-* examples
-* tutorials
+### Working across packages
+
+The `fasthep-dev` workspace provides a development environment for:
+
+* cross-package integration
+* shared tooling
+* toolkit-level testing
+* coordinated release validation
+
+Contributors making changes across multiple FAST-HEP packages are encouraged to use `fasthep-dev`.
+
+## Pull requests
+
+Pull requests should explain:
+
+* what changed
+* why the change is needed
+* any important implementation or design decisions
+* how the change was tested
+
+New functionality should generally include appropriate tests. Bug fixes should include regression tests where practical.
+
+Tests should be deterministic, avoid unnecessary external dependencies and hidden global state, and prefer realistic fixtures over excessive mocking where practical.
+
+## Coding guidelines
+
+FAST-HEP prioritises readability, maintainability, explicit interfaces, strong typing, and testability.
+
+When contributing code:
+
+* use descriptive names
+* keep functions focused
+* prefer composition over tightly coupled implementations
+* avoid unnecessary abstractions
+* prefer explicit behaviour over implicit magic
+* add tests for new functionality
+* keep general workflow infrastructure separate from domain-specific analysis logic
+
+These principles are intended to keep individual packages understandable and independently maintainable.
+
+## Documentation and examples
+
+Documentation improvements are highly valued. Useful contributions include:
+
+* examples and tutorials
 * API documentation
 * workflow diagrams
 * migration guides
 * debugging notes
+* fixes to unclear or outdated documentation
 
-Where possible:
+When writing documentation:
 
-* keep examples minimal
+* keep examples minimal enough to understand
 * prefer realistic workflows
 * document design intent, not only implementation details
-* avoid committing generated caches, build outputs, or large derived artifacts unless explicitly required for tests or documentation
+* avoid committing generated caches, build outputs, or large derived artifacts unless they are explicitly required
+
+### Workflow examples
+
+Workflow examples should use public or open data where possible.
+
+Data hosted on services such as CERN EOS or CERNBox may also be used when it is intended for redistribution.
+
+Examples should:
+
+* include provenance and source information
+* be reproducible where practical
+* avoid committing large binary files directly to repositories
+
+Additional tutorial and example conventions are documented by `fasthep-workshop`.
 
 ## AI-assisted contributions
 
-AI-assisted contributions are welcome.
+AI-assisted contributions are welcome, but contributors remain responsible for the code and documentation they submit.
 
-However, contributors remain responsible for the code they submit.
+Contributors should understand and review generated changes, validate their correctness, ensure relevant tests pass, and make sure the implementation is consistent with FAST-HEP's design principles.
 
-Contributors should:
+For substantial AI-generated or AI-assisted changes, pull requests should briefly describe:
 
-* understand the generated code
-* review generated changes carefully
-* validate correctness locally
-* ensure tests pass
-* ensure the implementation matches FAST-HEP design principles
+* what was generated or assisted by AI
+* what was manually reviewed or modified
+* important design decisions
+* known limitations, assumptions, or areas requiring additional review
 
-Pull requests containing substantial AI-generated or AI-assisted changes should include:
+AI tools should assist engineering work rather than replace contributor understanding or reviewer accountability.
 
-* a short summary of what was generated
-* a summary of what was manually reviewed or modified
-* explanations for important design decisions
-* notes about limitations, assumptions, or areas requiring follow-up review
+Reviewers may ask for changes when generated code cannot be reasonably explained, introduces unnecessary or unclear abstractions, or appears not to have been adequately reviewed.
 
-This additional context helps maintain:
+## Design principles
 
-* review quality
-* long-term maintainability
-* architectural consistency
-* contributor trust
+FAST-HEP separates general workflow infrastructure from specialised analysis capabilities.
 
-Reviewers may reject contributions that:
+In particular, responsibilities such as workflow orchestration, HEP analysis logic, rendering, metadata management, and command-line interfaces live in focused packages with explicit interfaces between them.
 
-* cannot be reasonably explained
-* introduce unclear abstractions
-* add unnecessary complexity
-* appear to contain unreviewed generated code
-* conflict with ecosystem design principles
+This separation supports independent package development, experiment-specific extensions, and reuse of general components outside HEP.
 
-AI tools are intended to assist contributors, not replace engineering understanding or reviewer accountability.
-
-## Testing expectations
-
-New functionality should generally include:
-
-* unit tests
-* integration tests where appropriate
-* regression tests for bug fixes
-
-Tests should:
-
-* be deterministic
-* avoid unnecessary external dependencies
-* avoid hidden global state
-* prefer realistic fixtures over excessive mocking where practical
-
-## Design philosophy
-
-FAST-HEP intentionally separates:
-
-* workflow orchestration
-* analysis logic
-* rendering
-* metadata management
-* CLI concerns
-
-This modularity helps:
-
-* ecosystem stability
-* independent package evolution
-* contributor onboarding
-* experiment-specific extension
-* future non-HEP reuse of workflow tooling
-
-Contributors are encouraged to preserve these boundaries where possible.
+Contributors should preserve these boundaries where practical. If a change appears to require crossing them, discussing the design before implementation is encouraged.
 
 ## Releases
 
-Packages are released independently.
+FAST-HEP packages are released independently.
 
-The `fasthep` meta package is used to provide:
+The `fasthep` meta-package provides curated, compatible combinations of packages for users of the complete toolkit.
 
-* verified compatibility bundles
-* coordinated ecosystem releases
-* curated installation profiles
+The `fasthep-dev` workspace supports integration testing and coordinated validation across packages.
 
-The `fasthep-dev` workspace is intended to support future ecosystem-level release orchestration and integration validation.
+## Getting help
 
-## Communication
+Questions about using or contributing to FAST-HEP are welcome in [GitHub Discussions](https://github.com/FAST-HEP/fasthep/discussions).
 
-Project discussions and questions:
+Bug reports and feature requests can be submitted through [GitHub Issues](https://github.com/FAST-HEP/fasthep/issues).
 
-* GitHub Discussions:
-  [https://github.com/FAST-HEP/fasthep/discussions](https://github.com/FAST-HEP/fasthep/discussions)
-
-Bug reports and feature requests:
-
-* GitHub Issues:
-  [https://github.com/FAST-HEP/fasthep/issues](https://github.com/FAST-HEP/fasthep/issues)
+If you are unsure whether something is a bug, feature request, or general question, starting a discussion is perfectly fine.
 
 ## License
 
