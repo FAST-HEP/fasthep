@@ -31,12 +31,12 @@ dependencies = []
 
 [project.optional-dependencies]
 basic = [
-  "fasthep-flow == 2026.08.3",
+  "fasthep-flow == 2026.8.4",
   "fasthep-cli == 2026.08.2",
 ]
 
 hep = [
-  "fasthep-flow == 2026.08.3",
+  "fasthep-flow == 2026.8.4",
   "fasthep-cli == 2026.08.2",
   "fasthep-curator == 2026.08.1",
   "fasthep-carpenter == 2026.08.2",
@@ -44,7 +44,7 @@ hep = [
 ]
 
 full = [
-  "fasthep-flow == 2026.08.3",
+  "fasthep-flow == 2026.8.4",
   "fasthep-cli == 2026.08.2",
   "fasthep-curator == 2026.08.1",
   "fasthep-carpenter == 2026.08.2",
