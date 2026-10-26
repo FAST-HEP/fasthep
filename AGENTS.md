@@ -132,3 +132,13 @@ environment for routine work unless validating a specific Python version.
 rather than duplicating it. Preserve companion-repository links to
 `CONTRIBUTING.md`; if a link is stale, report it instead of editing another
 repository in this task.
+
+## Documentation and Changelog
+
+User-facing changes — new features, behavior changes, bug fixes, breaking changes — must add an
+entry to `CHANGELOG.md` under `## [Unreleased]`, in the matching [Keep a
+Changelog](https://keepachangelog.com/en/1.1.0/) category (Added, Changed, Deprecated, Removed,
+Fixed, Security). Most of this file's released sections are assembled automatically by
+`fasthep-dev`'s `release-aggregate-changelog` step from each package's own `CHANGELOG.md`; entries
+added here by hand should be specific to the `fasthep` meta package itself (dependency bundles,
+extras, install behaviour).
