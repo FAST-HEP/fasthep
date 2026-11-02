@@ -135,10 +135,9 @@ repository in this task.
 
 ## Documentation and Changelog
 
-User-facing changes — new features, behavior changes, bug fixes, breaking changes — must add an
-entry to `CHANGELOG.md` under `## [Unreleased]`, in the matching [Keep a
-Changelog](https://keepachangelog.com/en/1.1.0/) category (Added, Changed, Deprecated, Removed,
-Fixed, Security). Most of this file's released sections are assembled automatically by
-`fasthep-dev`'s `release-aggregate-changelog` step from each package's own `CHANGELOG.md`; entries
-added here by hand should be specific to the `fasthep` meta package itself (dependency bundles,
-extras, install behaviour).
+Do not edit `CHANGELOG.md` by hand. Its release sections are assembled from each package's own
+changelog by `fasthep-dev`'s `release-aggregate-changelog` step, and `## [Unreleased]` stays empty.
+Commit messages follow `<type>(<scope>): <description>`; the rules are in `docs/commit-convention.md`
+of [FAST-HEP/.github](https://github.com/FAST-HEP/.github), checked by the `commit-msg` hook in
+`.pre-commit-config.yaml` (`pre-commit install` installs it) and by CI. Changes to the dependency
+bundles, extras or install behaviour are described by a user-facing commit subject like any other.
