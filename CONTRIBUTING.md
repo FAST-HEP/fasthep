@@ -159,6 +159,16 @@ Examples should:
 
 Additional tutorial and example conventions are documented by `fasthep-workshop`.
 
+## Commits and changelogs
+
+Commit messages follow `<type>(<scope>): <description>` (for example
+`fix(compiler): chunk each file by its own event count`). The subject is what users read: release
+notes and `CHANGELOG.md` are generated from the commit subjects, never edited by hand. The rules
+are in the
+[commit convention](https://github.com/FAST-HEP/.github/blob/main/docs/commit-convention.md); each
+repository's `pre-commit` setup installs a `commit-msg` hook that checks them, and CI checks every
+commit of a pull request.
+
 ## AI-assisted contributions
 
 AI-assisted contributions are welcome, but contributors remain responsible for the code and documentation they submit.
