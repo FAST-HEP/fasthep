@@ -19,6 +19,8 @@ You do not need to be familiar with the entire FAST-HEP toolkit to contribute to
 
 If you have found a bug, have an idea for a feature, or are unsure where a change belongs, start by opening an [issue](https://github.com/FAST-HEP/fasthep/issues) or asking in [GitHub Discussions](https://github.com/FAST-HEP/fasthep/discussions).
 
+Write an issue in the short shape described in [Writing issues](https://github.com/FAST-HEP/.github/blob/main/docs/issues.md): a lead paragraph, what, done when, and related.
+
 For small and self-contained changes, such as typo fixes or straightforward documentation improvements, you can open a pull request directly.
 
 For substantial features, refactors, or architectural changes, please discuss the proposal before investing significant implementation effort.
@@ -106,6 +108,8 @@ Pull requests should explain:
 * why the change is needed
 * any important implementation or design decisions
 * how the change was tested
+
+Keep the description short and link the issue instead of repeating it. [Writing pull requests](https://github.com/FAST-HEP/.github/blob/main/docs/pull-requests.md) has the shape and the word budgets.
 
 New functionality should generally include appropriate tests. Bug fixes should include regression tests where practical.
 
